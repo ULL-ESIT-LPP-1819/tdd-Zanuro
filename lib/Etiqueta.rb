@@ -1,6 +1,6 @@
 require "Etiqueta/version"
 
-class Etiqueta
+class Tag
 
 def initialize(nombre_etiqueta,grasas,grasas_saturadas,hidratos,azucares,proteinas,sal,dividido)
     @nombre_etiqueta = String(nombre_etiqueta)
