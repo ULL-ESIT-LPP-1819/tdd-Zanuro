@@ -13,7 +13,7 @@ class Tag
     @azucares = Float(azucares)
     @proteinas = Float(proteinas)
     @sal = Float(sal)
-    @dividido = Char(dividido)        # 'T' para verdadero  'F' para falso
+    @dividido = String(dividido)        # 'T' para verdadero  'F' para falso
     @grasas_mono_insaturadas = 0
     @grasas_poliinsaturadas = 0
     @polialcoholes = 0
@@ -30,8 +30,8 @@ class Tag
   end
 
   def porciones
-    if @dividido == 'T'
-      a = rand(1..10)
+    a = 6
+    if @dividido == "T"
       puts "El paquete se encuentra dividido en: #{a} porciones"
       puts "Cada paquete tiene un tamaño de #{self.suma_valores}"
       puts "Cada paquete contendra lo siguiente:"
@@ -78,80 +78,96 @@ class Tag
   end
 
   def ingesta_referencia(valor)
-    (valor*100)/self.suma_valores
+    ((valor*100)/self.suma_valores).round(2)
 
   end
 
   def grasa_kj_g
-    @grasas*37
+   (@grasas*37).round(1)
   end
   def monoins_kj_g
-    @grasas_mono_insaturadas*37
+    (@grasas_mono_insaturadas*37).round(1)
   end
   def poli_kj_g
-    @grasas_poliinsaturadas*37
+   (@grasas_poliinsaturadas*37).round(1)
   end
   def hidratos_kj_g
-    @hidratos*17
+    (@hidratos*17).round(1)
   end
   def polialcoles_kj_g
-    @polialcoholes*10
+    (@polialcoholes*10).round(1)
   end
   def almidon_kj_g
-    @almidon*17
+    (@almidon*17).round(1)
   end
   def fibra_kj_g
-    @fibra_alim*8
+    (@fibra_alim*8).round(1)
   end
   def proteinas_kj_g
-    @proteinas*17
+    (@proteinas*17).round(1)
   end
   def sal_kj_g
-    @sal*25
+    (@sal*25).round(1)
   end
   def grasa_kcal_g
-    @grasas*9
+    (@grasas*9).round(1)
   end
   def monoins_kcal_g
-    @grasas_mono_insaturadas*9
+    (@grasas_mono_insaturadas*9).round(1)
   end
   def poli_kcal_g
-    @grasas_poliinsaturadas*9
+    (@grasas_poliinsaturadas*9).round(1)
   end
   def hidratos_kcal_g
-    @hidratos*4
+   (@hidratos*4).round(1)
   end
   def polialcoles_kcal_g
-    @polialcoholes*2.4
+    (@polialcoholes*2.4).round(1)
   end
   def almidon_kcal_g
-    @almidon*4
+    (@almidon*4).round(1)
   end
   def fibra_kcal_g
-    @fibra_alim*2
+    (@fibra_alim*2).round(1)
   end
   def proteinas_kcal_g
-    @proteinas*4
+    (@proteinas*4).round(1)
   end
   def sal_kcal_g
-    @sal*6
+    (@sal*6).round(1)
   end
 
   def imprimir_etiqueta
-    puts "     Por 100g o 100ml de producto   IR(por 100g o 100ml)   Por porcion de #{self.suma_valores/self.porciones}   IR(por porcion de #{self.suma_valores/self.porciones})"
-    puts "Val. ener:#{self.suma_kj} kJ,#{self.suma_kcal} kcal ,#{self.ingesta_referencia(self.suma_kj)} %,#{self.suma_kj/self.porciones}, #{self.ingesta_referencia(self.suma_kj)/self.porciones} Recomendado: 8400 kJ/ 2000kcal"
-    puts "Grasas: #{@grasas} g, #{self.ingesta_referencia(@grasas)} %, #{@grasas/self.porciones} g, #{self.ingesta_referencia(@grasas)/self.porciones} %"
-    puts "Saturadas: #{@grasas_saturadas} g, #{self.ingesta_referencia(@grasas_saturadas)} %, #{@grasas_saturadas/self.porciones} g, #{self.ingesta_referencia(@grasas_saturadas)/self.porciones} %"
-    puts "Monoinsaturadas: #{@grasas_mono_insaturadas} g, 0 %, #{@grasas_mono_insaturadas/self.porciones} g, 0%"
-    puts "Poliinsaturados: #{@grasas_poliinsaturadas} g, 0%, #{@grasas_poliinsaturadas/self.porciones} g, 0%"
-    puts "Hidratos: #{@hidratos} g, #{self.ingesta_referencia(@hidratos)} %, #{@hidratos/self.porciones} g, #{self.ingesta_referencia(@hidratos)/self.porciones} %"
-    puts "Azucares: #{@azucares} g, #{self.ingesta_referencia(@azucares)} %, #{@azucares/self.porciones} g, #{self.ingesta_referencia(@azucares)/self.porciones} %"
-    puts "Polialcoholes: #{@polialcoholes} g, 0%, #{@polialcoholes/self.porciones} g, 0%"
-    puts "Almidon: #{@almidon} g, 0%, #{@almidon/self.porciones} g, 0%"
-    puts "Fibra alim: #{@fibra_alim} g, 0%, #{@fibra_alim/self.porciones} g, 0%"
-    puts "Proteinas: #{@proteinas} g, #{self.ingesta_referencia(@proteinas)} %, #{@proteinas/self.porciones} g, #{self.ingesta_referencia(@proteinas)/self.porciones} %"
-    puts "Sal: #{@sal} g, #{self.ingesta_referencia(@sal)} %, #{@sal/self.porciones} g, #{self.ingesta_referencia(@sal)/self.porciones} %"
+     if @dividido == "T"
+        puts "     Por 100g o 100ml de producto   IR(por 100g o 100ml)   Por porcion de #{self.suma_valores/self.porciones}   IR(por porcion de #{self.suma_valores/self.porciones})"
+        puts "Val. ener:#{self.suma_kj} kJ,#{self.suma_kcal} kcal ,#{self.ingesta_referencia(self.suma_kj)} %,#{self.suma_kj/self.porciones}, #{self.ingesta_referencia(self.suma_kj)/self.porciones} Recomendado: 8400 kJ/ 2000kcal"
+        puts "Grasas: #{@grasas} g, #{self.ingesta_referencia(@grasas)} %, #{@grasas/self.porciones} g, #{self.ingesta_referencia(@grasas)/self.porciones} %"
+        puts "Saturadas: #{@grasas_saturadas} g, #{self.ingesta_referencia(@grasas_saturadas)} %, #{@grasas_saturadas/self.porciones} g, #{self.ingesta_referencia(@grasas_saturadas)/self.porciones} %"
+        puts "Monoinsaturadas: #{@grasas_mono_insaturadas} g, 0 %, #{@grasas_mono_insaturadas/self.porciones} g, 0%"
+        puts "Poliinsaturados: #{@grasas_poliinsaturadas} g, 0%, #{@grasas_poliinsaturadas/self.porciones} g, 0%"
+        puts "Hidratos: #{@hidratos} g, #{self.ingesta_referencia(@hidratos)} %, #{@hidratos/self.porciones} g, #{self.ingesta_referencia(@hidratos)/self.porciones} %"
+        puts "Azucares: #{@azucares} g, #{self.ingesta_referencia(@azucares)} %, #{@azucares/self.porciones} g, #{self.ingesta_referencia(@azucares)/self.porciones} %"
+        puts "Polialcoholes: #{@polialcoholes} g, 0%, #{@polialcoholes/self.porciones} g, 0%"
+        puts "Almidon: #{@almidon} g, 0%, #{@almidon/self.porciones} g, 0%"
+        puts "Fibra alim: #{@fibra_alim} g, 0%, #{@fibra_alim/self.porciones} g, 0%"
+        puts "Proteinas: #{@proteinas} g, #{self.ingesta_referencia(@proteinas)} %, #{@proteinas/self.porciones} g, #{self.ingesta_referencia(@proteinas)/self.porciones} %"
+        puts "Sal: #{@sal} g, #{self.ingesta_referencia(@sal)} %, #{@sal/self.porciones} g, #{self.ingesta_referencia(@sal)/self.porciones} %"
+     elsif @dividido == "F"
+	puts "     Por 100g o 100ml de producto   IR(por 100g o 100ml) "
+        puts "Val. ener:#{self.suma_kj} kJ,#{self.suma_kcal} kcal ,#{self.ingesta_referencia(self.suma_kj)} %, Recomendado: 8400 kJ/ 2000kcal"
+        puts "Grasas: #{@grasas} g, #{self.ingesta_referencia(@grasas)} % " 
+        puts "Saturadas: #{@grasas_saturadas} g, #{self.ingesta_referencia(@grasas_saturadas)} %, "
+        puts "Monoinsaturadas: #{@grasas_mono_insaturadas} g, 0% "
+        puts "Poliinsaturados: #{@grasas_poliinsaturadas} g,  0% "
+        puts "Hidratos: #{@hidratos} g, #{self.ingesta_referencia(@hidratos)} %"
+        puts "Azucares: #{@azucares} g, #{self.ingesta_referencia(@azucares)} %"
+        puts "Polialcoholes: #{@polialcoholes} g, 0%"
+        puts "Almidon: #{@almidon} g, 0%"
+        puts "Fibra alim: #{@fibra_alim} g, 0%"
+        puts "Proteinas: #{@proteinas} g, #{self.ingesta_referencia(@proteinas)} %"
+        puts "Sal: #{@sal} g, #{self.ingesta_referencia(@sal)} %"
 
+      end
   end
 
   def valores_opt
