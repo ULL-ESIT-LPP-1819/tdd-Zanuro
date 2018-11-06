@@ -6,7 +6,7 @@
 
 task :default => :spec
 
-desc "Ejecutar las specs de la clase Etiqueta"
+desc "Ejecutar las specs de la clase Tag"
 task :spec do
   sh "rspec -I. spec/Etiqueta_spec.rb"
 end

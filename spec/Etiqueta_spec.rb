@@ -6,7 +6,7 @@ RSpec.describe Etiqueta do
   end
 
   before :each do
-    @et1 = Etiqueta.new("Pizza",40.3,21.2,19.9,6.2,3.1,8.1,'F')
+    @et1 = Tag.new("Pizza",40.3,21.2,19.9,6.2,3.1,8.1,'F')
   end    
     
   describe "El nombre de la etiqueta es" do

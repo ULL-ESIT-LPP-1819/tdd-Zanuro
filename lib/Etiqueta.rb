@@ -1,5 +1,5 @@
 require "Etiqueta/version"
 
-class Etiqueta
+class Tag
 
 end
