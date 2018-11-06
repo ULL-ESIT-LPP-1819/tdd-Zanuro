@@ -3,7 +3,7 @@ require 'lib/Etiqueta.rb'
 RSpec.describe Etiqueta do
   
   before :each do
-     @et1 = Etiqueta.new("Pizza",40.3,20.2,25.8,5.1,3.2,8.0,"F")
+     @et1 = Tag.new("Pizza",40.3,20.2,25.8,5.1,3.2,8.0,"F")
   end
  	 
   describe "almacenamiento de la etiqueta" do
