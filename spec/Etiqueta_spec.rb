@@ -11,10 +11,10 @@ RSpec.describe Etiqueta do
     
   describe "El nombre de la etiqueta es" do
     it "se almacena correctamente el nombre de la etiqueta" do
-      @et1.expect(nombre_etiqueta).to_be eq("Pizza") 
+      expect(@et1.nombre_etiqueta).to_be eq("Pizza") 
     end
     it "se almacenan correctamente las grasas" do
-      @et1.expect(grasas).to_be eq(40.3)  
+      expect(@et1.grasas).to_be eq(40.3)  
     end
   end
 end
