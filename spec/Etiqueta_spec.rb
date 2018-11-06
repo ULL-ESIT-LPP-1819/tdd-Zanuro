@@ -3,29 +3,36 @@ RSpec.describe Etiqueta do
   
   before :each do
      @et1 = Tag.new("Pizza",40.3,20.2,25.8,5.1,3.2,8.0,"F")
+     @et2 = Tag.new("Hamburguesa",57.2,33.1,18.9,6.8,5.5,10.1,"T")
   end
  	 
   describe "almacenamiento de la etiqueta" do
     it "Se almacena la etiqueta " do
         expect(@et1.nombre_etiqueta).to eq("Pizza")
 	expect(@et1.obtener_nombre).to eq("Pizza")
+	expect(@et2.nombre_etiqueta).to eq("Hamburguesa")
     end 
   end
   describe "Almacenamiento de los datos" do
      it "Se almacenan los datos" do
          expect(@et1.grasas).to eq(40.3)
+	 expect(@et2.grasas).to eq(57.2)
 	 expect(@et1.grasas_saturadas).to eq(20.2)
+	 expect(@et2.grasas_saturadas).to eq(33.1)
          expect(@et1.hidratos).to eq(25.8)
+	 expect(@et2.hidratos).to eq(18.9)
          expect(@et1.azucares).to eq(5.1)
          expect(@et1.proteinas).to eq(3.2)
          expect(@et1.sal).to eq(8.0)
          expect(@et1.dividido).to eq("F")
+	 expect(@et2.dividido).to eq("T")
       end
    end
   
    describe "Comprobacion de si el paquete es unico" do
       it "Comprobamos si el paquete es dividido" do
-	 expect(@et1.porciones).to eq(6)
+	 expect(@et1.porciones).to eq(1)
+ 	 expect(@et2.porciones).to eq(6)
       end
    end
    
@@ -87,12 +94,14 @@ RSpec.describe Etiqueta do
    describe "Imprimir etiqueta valor nutricional" do
        it "comprobamos el imprimir de la etiqueta" do
 	    expect(@et1.imprimir_etiqueta).to eq(nil)
+	    expect(@et2.imprimir_etiqueta).to eq(nil)
 	end
    end
 
    describe "Imprimimos los valores optimos recomendados" do
 	it "comprobamos nuestros valores nutricionales frente a los recomendados" do
    	     expect(@et1.valores_opt).to eq(nil)
+	     expect(@et2.valores_opt).to eq(nil)
         end
    end	
 end

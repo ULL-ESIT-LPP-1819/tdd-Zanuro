@@ -28,14 +28,38 @@ class Tag
     puts "El nombre de la etiqueta es: #{@nombre_etiqueta}"
     @nombre_etiqueta
   end
-
+  def obtener_grasas
+    puts "La cantidad de grasas es: #{@grasas}"
+    @grasas
+  end
+  def obtener_grasas_sat
+    puts "La cantidad de grasas saturadas es: #{@grasas_saturadas}"
+    @grasas_saturadas
+  end
+  def obtener_hidratos
+    puts "La cantidad de hidratos es: #{@hidratos}"
+    @hidratos
+  end
+  def obtener_azucares
+    puts "La cantidad de azucares es: #{@azucares}"
+    @azucares
+  end 
+  def obtener_proteinas
+    puts "La cantidad de proteinas es: #{@proteinas}"
+    @proteinas
+  end
+  def obtener_sal
+    puts "La cantidad de sal es: #{sal}"
+    @sal
+  end
   def porciones
-    a = 6
     if @dividido == "T"
+      a=6
+      a=a.to_f
       puts "El paquete se encuentra dividido en: #{a} porciones"
       puts "Cada paquete tiene un tamaño de #{self.suma_valores}"
       puts "Cada paquete contendra lo siguiente:"
-      puts "#{@grasas/a} grasas, #{@grasas_saturadas/a} grasas saturadas,#{@hidratos/a}, #{@azuraces/a} azucares,
+      puts "#{@grasas} grasas, #{@grasas_saturadas/a} grasas saturadas,#{@hidratos/a} hidratos, #{@azucares/a} azucares,
       #{@proteinas/a} proteinas, #{@sal/a} sal"
       if @grasas_mono_insaturadas > 0
         puts "El paquete tambien contiene : #{@grasas_mono_insaturadas/a}"
@@ -56,12 +80,12 @@ class Tag
       if minerales > 0
         puts "El paquete contiene #{@minerales/a}"
       end
+      return a
     else
       puts "El paquete no se encuentra dividido en paquetes"
       puts "Unico paquete de tamaño #{self.suma_valores}"
-
+      return 1
     end
-       return a
     end
 
   
