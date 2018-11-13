@@ -1,4 +1,4 @@
-require 'lib/Etiqueta.rb'
+require 'lib/Etiqueta/Etiqueta.rb'
 RSpec.describe Etiqueta do
   
   before :each do
