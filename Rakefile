@@ -1,4 +1,3 @@
-
 #require "bundler/gem_tasks"
 #require "rspec/core/rake_task"
 
@@ -6,9 +5,9 @@
 
 task :default => :spec
 
-desc "Ejecutar las specs de la clase Tag"
+desc "Ejecutar pruebas sobre la clase ListaDoble"
 task :spec do
-  sh "rspec -I. spec/Etiqueta_spec.rb"
+  sh "rspec -I. spec/Lista_spec.rb"
 end
 
 desc "Ejecutar con documentacion"
