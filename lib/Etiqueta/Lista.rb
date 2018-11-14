@@ -141,9 +141,9 @@ def empty
 
   def clasificacion
 
-    principal =[]
     lista1 = []
     lista2 = []
+
     current_node = @head
     while(!current_node.nil?)
 	if current_node.value.sal < 6
