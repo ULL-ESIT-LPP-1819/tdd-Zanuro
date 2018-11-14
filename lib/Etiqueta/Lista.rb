@@ -1,4 +1,4 @@
-Node = Struct.new(:value,:next,:prev)
+Node = Struct.new(:value, :next, :prev)
 
 class ListaDoble
   attr_accessor :head, :tail, :length
@@ -134,7 +134,7 @@ def empty
   def print
     current_node = @head
     while !(current_node.nil?)
-      puts current_node.value.to_s
+      puts current_node.value.nombre_etiqueta.to_s
       current_node = current_node.next
     end
   end
@@ -153,5 +153,7 @@ def empty
 	end
 	current_node = current_node.next
      end
+     puts "Lista con valores de la sal menores que 6 :#{lista1}"
+     puts "Lista con valores de la sal mayores que 6 :#{lista2}" 
   end
 end
