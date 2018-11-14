@@ -25,7 +25,7 @@ class Tag
   end
 
   def obtener_nombre
-    puts "El nombre de la etiqueta es: #{@nombre_etiqueta}"
+   # puts "El nombre de la etiqueta es: #{@nombre_etiqueta}"
     @nombre_etiqueta
   end
   def obtener_grasas

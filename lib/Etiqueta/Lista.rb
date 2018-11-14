@@ -27,25 +27,31 @@ class ListaDoble
     @tail = nodo
     @length+=1
   end
-  def add_at_final(nodo)
-    if @tail.nil?
-      @tail = nodo
-      @length+=1
+  def add_at_final(et)
+    nodo = Node.new(et,nil,nil)    
+    if self.empty
+	nodo.next = nodo
+	nodo.prev = nodo
+	@head = nodo
+	@tail = nodo
+	@length+=1
     else
-      @tail.next = nodo
-      nodo.prev = @tail
-      @tail = nodo
-      @length+=1
+       nodo.prev = @tail
+       nodo.next = nil
+       @tail.next = nodo
+       @tail = nodo
+       @length+=1   
     end
-  end
-  def empty
+  end  
+def empty
     if @head == nil
       true
     else
       false
     end
   end
-  def add_at_begin(nodo)
+
+ def add_at_begin(nodo)
     if @head.nil?
       @head = nodo
       @length+=1
@@ -57,8 +63,8 @@ class ListaDoble
     end
   end
 
-  def extraer_begin
-    if @head.nil?
+  def extraer_begino
+    if @head == nil
       return nil
     else
       current_node = @head
@@ -69,16 +75,18 @@ class ListaDoble
       return current_node
     end
   end
-  def extraer_end
+  def extraer_begin
     if @tail.nil?
       return nil
-    else
-      current_node = @tail
-      @tail = @tail.prev
-      @tail.next = nil
-      current_node.prev = nil
-      @length-=1
-      return current_node
+    elsif @tail == @head
+      @tail = nil
+      @head = nil
+    else 
+ 	aux = @tail
+ 	@tail = aux.prev
+	@tail.next = nil
+	@length-=1
+	return aux
     end
   end
   def insert_after(nodo1,nodo2)
@@ -90,7 +98,7 @@ class ListaDoble
     else
       current_node = @head
       while current_node != nil
-        if current_node.data == nodo1.data
+        if current_node.value == nodo1.value
           current_node.next.prev(nodo2)
           nodo2.next(current_node.next)
           current_node.next(nodo2)
@@ -104,7 +112,7 @@ class ListaDoble
 
   def delete_nodo(nodo)
     current_node = @head
-    if current_node.data == nodo.data
+    if current_node.value == nodo.value
       @head = @head.next
       @head.prev(nil)
       current_node.next(nil)
@@ -112,7 +120,7 @@ class ListaDoble
     else
       while current_node != nil
         current_node = current_node.next
-        if current_node.data == nodo.data
+        if current_node.value == nodo.value
           current_node.prev.next(current_node.next)
           current_node.next.prev(current_node.prev)
           current_node.next(nil)
@@ -125,11 +133,25 @@ class ListaDoble
 
   def print
     current_node = @head
-    while current_node != nil
-      p current_node.data
+    while !(current_node.nil?)
+      puts current_node.value.to_s
       current_node = current_node.next
     end
-    p current_node.data
   end
 
+  def clasificacion
+
+    principal =[]
+    lista1 = []
+    lista2 = []
+    current_node = @head
+    while(!current_node.nil?)
+	if current_node.value.sal < 6
+	lista1.append(current_node.value.sal)
+	else
+	lista2.append(current_node.value.sal)
+	end
+	current_node = current_node.next
+     end
+  end
 end
