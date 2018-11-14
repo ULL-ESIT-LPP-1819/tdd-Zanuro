@@ -7,11 +7,11 @@ RSpec.describe Etiqueta do
      @et3 =  Tag.new("Manzana",15.2,8.4,9.4,1.5,7,0.8,"F")
      @et4 =  Tag.new("Hamburguesa",50.8,20.5,10.1,3.0,6,10.0,"F")
      @et5 =  Tag.new("Coca-cola",30.4,17.2,8.4,18.4,2.1,1.2,"F")
-   #@nodo1 = Node.new(@et1,@nodo2,nil)
-   #@nodo2 = Node.new(@et2,@nodo3,@nodo1)
-   # @nodo3 = Node.new(@et3,@nodo4,@nodo2)
-   # @nodo4 = Node.new(@et4,@nodo5,@nodo3)
-   # @nodo5 = Node.new(@et5,nil,@nodo4)     
+     #@nodo1 = Node.new(@et1,@nodo2,nil)
+     #@nodo2 = Node.new(@et2,@nodo3,@nodo1)
+     #@nodo3 = Node.new(@et3,@nodo4,@nodo2)
+     #@nodo4 = Node.new(@et4,@nodo5,@nodo3)
+     #@nodo5 = Node.new(@et5,nil,@nodo4)     
     @lista = ListaDoble.new(0)
      
   end
@@ -19,16 +19,20 @@ RSpec.describe Etiqueta do
   describe "insercion" do
     it "Se comprueba la insercion de los elementos" do
 	@lista.add_at_final(@et1)
-	puts "#{@lista.get_tail} \n"
+	#puts "#{@lista.get_tail} \n"
 	expect(@lista.get_tail).equal?(Node)
 	@lista.add_at_final(@et2)
-	puts "#{@lista.get_tail} \n"	
+	expect(@lista.get_tail.value.nombre_etiqueta).to eq("Noodles")
+	#puts "#{@lista.get_tail} \n"	
         @lista.add_at_final(@et3)
-	puts "#{@lista.get_tail} \n"
+	expect(@lista.get_tail.value.nombre_etiqueta).to eq("Manzana")
+	#puts "#{@lista.get_tail} \n"
 	@lista.add_at_final(@et4)
-	puts "#{@lista.get_tail} \n"
+	expect(@lista.get_tail.value.nombre_etiqueta).to eq("Hamburguesa")
+	#puts "#{@lista.get_tail} \n"
 	@lista.add_at_final(@et5)
-	puts "#{@lista.get_tail} \n"
+	expect(@lista.get_tail.value.nombre_etiqueta).to eq("Coca-cola")
+	#puts "#{@lista.get_tail} \n"
     end 
   end
 
@@ -81,11 +85,8 @@ RSpec.describe Etiqueta do
 	@lista.add_at_final(@et4)
 	@lista.add_at_final(@et5)	
   	@lista.print
-	#expect(@lista.extraer_begin).equal?(Node)
-	#expect(@lista.extraer_begin).equal?(Node)
-	#@lista.print
-
-     end
+	
+	 end
   end
   describe "extraccion de los elementos" do
     it "comprueba la extraccion de los elementos de la lista" do
@@ -111,5 +112,16 @@ RSpec.describe Etiqueta do
        end  
   end
 
+   describe "Comprobacion de la clasificacion de la sal" do
+	it "comprobamos los valores que coge la sal segun el IR" do
+	@lista.add_at_final(@et1)
+	@lista.add_at_final(@et2)
+	@lista.add_at_final(@et3)
+	@lista.add_at_final(@et4)
+	@lista.add_at_final(@et5)
+	@lista.clasificacion
+	
+	end
+   end
 end
    
