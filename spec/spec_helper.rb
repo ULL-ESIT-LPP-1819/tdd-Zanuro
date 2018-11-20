@@ -1,6 +1,8 @@
 require "bundler/setup"
 require 'Etiqueta.rb'
 require 'Etiqueta/Lista.rb'
+require 'Etiqueta/persona.rb'
+require 'Etiqueta/datos.rb'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
