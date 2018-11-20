@@ -12,6 +12,6 @@ end
 
 desc "Ejecutar con documentacion"
 task :doc do
-  sh "rspec -I. spec/Etiqueta_spec.rb --format documentation"
+  sh "rspec -I. spec/Persona_spec.rb --format documentation"
 end
 
