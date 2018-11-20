@@ -5,9 +5,9 @@
 
 task :default => :spec
 
-desc "Ejecutar pruebas sobre la clase ListaDoble"
+desc "Ejecutar pruebas sobre la clase Paciente"
 task :spec do
-  sh "rspec -I. spec/Lista_spec.rb"
+  sh "rspec -I. spec/Persona_spec.rb"
 end
 
 desc "Ejecutar con documentacion"

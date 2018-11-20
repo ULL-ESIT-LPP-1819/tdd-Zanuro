@@ -1,4 +1,3 @@
-Listas-Practica 7
+POO(Herencia)-Practica 8
 
-Desarollo Dirigido por Pruebas para la clase Etiqueta y la clase ListaDoble(lista doblemente enlazada) y una estructura de nodo
 
