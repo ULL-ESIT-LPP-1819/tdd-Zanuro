@@ -24,5 +24,8 @@ class Paciente < Individuo
     s << ", #{data})"
     s
   end
+
+  def get_data
+     @data
 end
 

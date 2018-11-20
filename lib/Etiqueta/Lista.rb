@@ -156,4 +156,31 @@ def empty
      puts "Lista con valores de la sal menores que 6 :#{lista1}"
      puts "Lista con valores de la sal mayores que 6 :#{lista2}" 
   end
+
+  def clasf_imc
+    lista1 = []
+    lista2 = []
+    lista3 = []
+    lista4 = []
+
+    current_node = @head
+    while(!current_node.nil?)
+      case current_node.value.imc
+      when current_node.value.imc < 18.5
+        lista1.append(current_node.value.imc)
+      when 18.5..24.9
+        lista2.append(current_node.value.imc)
+      when 25.0..29.9
+        lista3.append(current_node.value.imc)
+      when current_node.value.imc >= 30.0
+        lista4.append(current_node.value.imc)
+      end
+      current_node = current_node.next
+    end
+    puts "Personas con insuficiencia ponderal :#{lista1}"
+    puts "Personas con un intervalo normal :#{lista2}"
+    puts "Personas con sobrepeso : #{lista3}"
+    puts "Personas con obesidad: #{lista4}"
+  end
+
 end
