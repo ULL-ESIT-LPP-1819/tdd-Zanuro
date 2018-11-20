@@ -1,4 +1,4 @@
-require './lista.rb'
+#require './lista.rb'
 RSpec.describe Etiqueta do
 
   before :each do
@@ -40,15 +40,32 @@ RSpec.describe Etiqueta do
       expect(@in1.is_a?Paciente).to eq(true)
       expect(@in1).is_a?Object
       expect(@in1).is_a?BasicObject
+
       expect(@et1).is_a?(Individuo)
       expect(@et1).is_a?(Paciente)
       expect(@et1).is_a?Object
       expect(@et1).is_a?BasicObject
+
       expect(@lista).is_a?(ListaDoble)
       expect(@lista).is_a?Object
       expect(@lista).is_a?Paciente
-      #@in1.respond_to(:to_s)
+      
+      expect(@et1).to be_a_kind_of(Paciente)
+      expect(@in1).to be_a_kind_of(Individuo)
+      expect(@et2).not_to be_a_kind_of(ListaDoble)
     end
+
+    it "otros metodos de comprobacion de la jerarquia" do
+	expect(@et1.class).to eq(Paciente)
+	expect(@et1.class.superclass).to eq(Persona)
+	expect(@in1.class.superclass).to eq(Object)
+	expect(@et1.class.ancestors.include? (Object)).to eq (true)
+	expect(@et1.class.ancestors.include? (BasicObject)).to eq(true)
+	expect(@in1.class.ancestors.include? (Object)).to eq(true)
+	expect(@in1.class.ancestors.include? (BasicObject)).to eq(true)
+	puts Individuo.to_s
+	puts Paciente.to_s
+     end
   end
 
   describe "pertenencia a una de las clases" do
@@ -66,18 +83,26 @@ RSpec.describe Etiqueta do
       #@in1.respond_to(:to_s)
     end
   end
+	
 
 
-  describe "comprobamos las"
+  describe "comprobamos las funciones" do
+ 	it "comprobacion del tipo de funciones de las clases" do
+	expect(Individuo.private_method_defined? (:initialize)).to eq(true)
+	expect(Paciente.private_method_defined? (:initialize)).to eq(true)
+        expect(Paciente.method_defined? (:get_data)).to eq(true)
+	end
+   end
 
-  describe "Comprobacion de la clasificacion de la sal" do
-    it "comprobamos los valores que coge la sal segun el IR" do
-      @lista.add_at_final(@et1)
-      @lista.add_at_final(@et2)
-      @lista.add_at_final(@et3)
-      @lista.add_at_final(@et4)
-      @lista.add_at_final(@et5)
-
+  describe "Comprobacion de la clasificacion del imc" do
+    it "comprobamos los valores de imc que coge cada persona" do
+      expect(@lista.add_at_final(@et1)).equal?(Node)
+      expect(@lista.add_at_final(@et2)).equal?(Node)
+      expect(@lista.add_at_final(@et3)).equal?(Node)
+      expect(@lista.add_at_final(@et4)).equal?(Node)
+      expect(@lista.add_at_final(@et5)).equal?(Node)
+      @lista.clasf_imc
+      
 
     end
   end
