@@ -1,4 +1,3 @@
-#require './lista.rb'
 RSpec.describe Etiqueta do
 
   before :each do
@@ -6,7 +5,7 @@ RSpec.describe Etiqueta do
     @in2 = Individuo.new("Maria")
     @et1 =  Paciente.new("Juan",72.3,182.3,'1',43,84.2,95.5)
     @et2 =  Paciente.new("Maria",62.2,167.2,'0',38,70.2,74)
-    @et3 =  Paciente.new("Jose",84.6,184.2,'1',27,78.2,84.8)
+    @et3 =  Paciente.new("Jose",97.3,178.2,'1',31,88,98.4)
     @et4 =  Paciente.new("Jesus",68.3,172.0,'1',18,75.3,85.3)
     @et5 =  Paciente.new("Daniela",58.4,161.2,'0',36,68,73.2)
     #@nodo1 = Node.new(@et1,@nodo2,nil)
@@ -37,18 +36,16 @@ RSpec.describe Etiqueta do
   describe "jerarquia de las clases" do
     it "se comprueba la jerarquia de las clases" do
       expect(@in1).is_a?(Individuo)
-      expect(@in1.is_a?Paciente).to eq(true)
-      expect(@in1).is_a?Object
-      expect(@in1).is_a?BasicObject
+      expect(@in1).is_a?(Paciente)
+      expect(@in1).is_a?(Object)
+      expect(@in1).is_a?(BasicObject)
 
-      expect(@et1).is_a?(Individuo)
       expect(@et1).is_a?(Paciente)
-      expect(@et1).is_a?Object
-      expect(@et1).is_a?BasicObject
+      expect(@et1).is_a?(Object)
+      expect(@et1).is_a?(BasicObject)
 
       expect(@lista).is_a?(ListaDoble)
-      expect(@lista).is_a?Object
-      expect(@lista).is_a?Paciente
+      expect(@lista).is_a?(Object)
       
       expect(@et1).to be_a_kind_of(Paciente)
       expect(@in1).to be_a_kind_of(Individuo)
@@ -57,7 +54,7 @@ RSpec.describe Etiqueta do
 
     it "otros metodos de comprobacion de la jerarquia" do
 	expect(@et1.class).to eq(Paciente)
-	expect(@et1.class.superclass).to eq(Persona)
+	expect(@et1.class.superclass).to eq(Individuo)
 	expect(@in1.class.superclass).to eq(Object)
 	expect(@et1.class.ancestors.include? (Object)).to eq (true)
 	expect(@et1.class.ancestors.include? (BasicObject)).to eq(true)
@@ -97,10 +94,15 @@ RSpec.describe Etiqueta do
   describe "Comprobacion de la clasificacion del imc" do
     it "comprobamos los valores de imc que coge cada persona" do
       expect(@lista.add_at_final(@et1)).equal?(Node)
+      puts @lista.get_tail.value.nombre,@lista.get_tail.value.data.imc      
       expect(@lista.add_at_final(@et2)).equal?(Node)
+      puts @lista.get_tail.value.nombre,@lista.get_tail.value.data.imc      
       expect(@lista.add_at_final(@et3)).equal?(Node)
+      puts @lista.get_tail.value.nombre,@lista.get_tail.value.data.imc      
       expect(@lista.add_at_final(@et4)).equal?(Node)
+      puts @lista.get_tail.value.nombre,@lista.get_tail.value.data.imc      
       expect(@lista.add_at_final(@et5)).equal?(Node)
+      puts @lista.get_tail.value.nombre,@lista.get_tail.value.data.imc      
       @lista.clasf_imc
       
 

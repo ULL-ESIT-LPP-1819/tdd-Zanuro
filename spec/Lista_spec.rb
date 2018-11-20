@@ -1,4 +1,3 @@
-require 'lib/Etiqueta/Lista.rb'
 RSpec.describe Etiqueta do
   
   before :each do
