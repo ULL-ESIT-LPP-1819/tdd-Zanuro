@@ -1,3 +1,4 @@
+
 RSpec.describe Etiqueta do
 
   before :each do
