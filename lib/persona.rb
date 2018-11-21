@@ -13,7 +13,7 @@ class Paciente < Individuo
   attr_accessor :data
 
   def initialize(nombre,peso,altura,sexo,edad,cintura,cadera)
-    @nombre = nombre
+    super(nombre)
     @data= Datos.new(peso,altura,sexo,edad,cintura,cadera)
   end
 

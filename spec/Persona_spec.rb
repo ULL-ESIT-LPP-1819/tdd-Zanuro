@@ -88,6 +88,8 @@ RSpec.describe Etiqueta do
 	expect(Individuo.private_method_defined? (:initialize)).to eq(true)
 	expect(Paciente.private_method_defined? (:initialize)).to eq(true)
         expect(Paciente.method_defined? (:get_data)).to eq(true)
+	expect(Paciente.respond_to?('otra_funcion')).to eq(false)
+	expect(Individuo.respond_to?('to_s')).to eq(true)
 	end
    end
 
