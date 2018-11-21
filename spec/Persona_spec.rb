@@ -60,8 +60,8 @@ RSpec.describe Etiqueta do
 	expect(@et1.class.ancestors.include? (BasicObject)).to eq(true)
 	expect(@in1.class.ancestors.include? (Object)).to eq(true)
 	expect(@in1.class.ancestors.include? (BasicObject)).to eq(true)
-	puts Individuo.to_s
-	puts Paciente.to_s
+	#puts Individuo.to_s
+	#puts Paciente.to_s
      end
   end
 
@@ -70,13 +70,8 @@ RSpec.describe Etiqueta do
       expect(@in1).instance_of?(Individuo)
       expect(@in1.instance_of?Individuo).to eq(true)
       expect(@in1).instance_of?Object
-      expect(@in1).instance_of?BasicObject
       expect(@et1).instance_of?(Individuo)
       expect(@et1).instance_of?(Paciente)
-      expect(@in1).instance_of?Object
-      expect(@in1).instance_of?BasicObject
-      expect(@lista).instance_of?(ListaDoble)
-      expect(@lista).instance_of?(BasicObject)
       #@in1.respond_to(:to_s)
     end
   end
