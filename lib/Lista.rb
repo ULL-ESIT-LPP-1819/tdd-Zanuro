@@ -1,6 +1,8 @@
 Node = Struct.new(:value, :next, :prev)
 
 class ListaDoble
+  include Comparable,Enumerable
+
   attr_accessor :head, :tail, :length
 
   def initialize(length)
@@ -8,7 +10,27 @@ class ListaDoble
     @tail = nil
     @length = length
   end
-
+  
+  def <=>(otro)
+      @head.value <=> otro.head.value
+  end	
+  def each
+      yield @head.value
+  end
+  def position(pos)
+	if @head.nil?
+	puts "La lista esta vacia"
+	end
+	contador=0
+	copia=@head
+	while contador<pos && !copia.nil?
+		copia2= copia[:next]
+		copia=copia2
+		contador +=1
+	end
+	return copia[:value]
+   end
+		
   def get_head
     @head
   end
@@ -184,4 +206,27 @@ def empty
     puts "Personas con obesidad: #{lista4}"
   end
 
+  VAR_GLOBAL=0	
+  def clasf_hidratos
+
+   lista=[]
+
+   current_node=@head
+   while(!current_node.nil?)
+	lista.append(current_node.value.hidratos)
+	current_node=current_node.next
+   end
+   return lista
+  end
+  
+  def clasf_peso
+	
+   lista=[]
+   current_node=@head
+   while(!current_node.nil?)
+	lista.append(current_node.value.data.cadera)
+	current_node=current_node.next
+   end
+   return lista
+  end
 end

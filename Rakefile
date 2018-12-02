@@ -5,13 +5,13 @@
 
 task :default => :spec
 
-desc "Ejecutar pruebas sobre la clase Paciente"
+desc "Ejecutar pruebas sobre la clase Comparable"
 task :spec do
-  sh "rspec -I. spec/Persona_spec.rb"
+  sh "rspec -I. spec/comparable_spec.rb"
 end
 
 desc "Ejecutar con documentacion"
 task :doc do
-  sh "rspec -I. spec/Persona_spec.rb --format documentation"
+  sh "rspec -I. spec/comparable_spec.rb --format documentation"
 end
 
