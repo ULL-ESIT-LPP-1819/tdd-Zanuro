@@ -1,7 +1,8 @@
 require "Etiqueta/version"
 
 class Tag
-
+  
+  include Comparable
   attr_accessor :grasas_mono_insaturadas, :grasas_poliinsaturadas, :polialcoholes, :almidon, :fibra_alim, :vitaminas, :minerales
   attr_reader :nombre_etiqueta, :grasas, :grasas_saturadas, :hidratos, :azucares, :proteinas, :sal, :dividido
 
@@ -22,6 +23,10 @@ class Tag
     @vitaminas = 0
     @minerales = 0
 
+  end
+
+  def <=>(otro)
+      nombre_etiqueta <=> otro.nombre_etiqueta
   end
 
   def obtener_nombre
