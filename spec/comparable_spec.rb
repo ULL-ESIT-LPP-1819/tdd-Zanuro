@@ -82,26 +82,26 @@ RSpec.describe Etiqueta do
 	it "Etiqueta menor que otra" do
 
 	expect(@et1 < @et2).to eq(false)
-	expect(@et3 < @et4).to eq(false)
+	expect(@et3 < @et4).to eq(true)
 	end
 	it "Etiqueta mayor que otra" do
 	expect(@et1 > @et2).to eq(true)
-	expect(@et3 > @et4).to eq(true)
+	expect(@et3 > @et4).to eq(false)
 	end
 	it "Etiqueta menor o igual que otra" do
 	expect(@et1 <= @et2).to eq(false)
-	expect(@et3 <= @et4).to eq(false)
+	expect(@et3 <= @et4).to eq(true)
 	end
 	it "Etiqueta mayor o igual que otra" do
 	expect(@et1 >= @et2).to eq(true)
-	expect(@et3 >= @et4).to eq(true)
+	expect(@et3 >= @et4).to eq(false)
 	end   
 	it "Etiqueta igual que otra" do
 	expect(@et1 == @et2).to eq(false)
 	expect(@et3 == @et4).to eq(false)
 	end
 	it "Etiqueta entre otras etiquetas" do
-	expect(@et1.between?(@et2,@et3)).to eq(true)
+	expect(@et1.between?(@et2,@et3)).to eq(false)
 	expect(@et2.between?(@et3,@et4)).to eq(false)
 	end    
      end
@@ -139,17 +139,44 @@ RSpec.describe Etiqueta do
 	@lista.add_at_final(@et2)
 	@lista.add_at_final(@et3)
 	@lista.add_at_final(@et4)
-	expect(@lista.all?).to eq(true)
-	expect(@lista.any?).to eq(true)
-	expect(@lista.count).to eq(4)
-	expect(@lista.min).to eq(18.9)
-	expect(@lista.max).to eq(52.1)
-	expect(@lista.sort).to eq([18.9,20.8,25.8,52.1])
-	expect(@lista.map{i|i*(2*i)}).to eq([714.42,865.28,1331.28,5428.82])
-	expect(@lista.collect{i|i*i}).to eq([357.21,432.64,665.64,2714.41])
-	expect(@lista.detect {|i| i%2 == 0.8 or i%2 == 0.9}).to eq([18.9,20.8])
-	expect(@lista.find {|i| i%5 == 0.8}).to eq(25.8)
-	expect(@lista.find_all { |i| i%2 == 0.1}).to eq(52.1)
-	expect(@lista.select { |num| num > 20.0 }).to eq([20.8,25.8,52.1])
-	expect(@lista.drop(25.8)).to eq([18.9,20.8,52.1])
+	end
+	it "comprobando a ver si se han insertado correctamente y el metodo any/all" do
+	@lista.add_at_final(@et1)
+	@lista.add_at_final(@et2)
+	@lista.add_at_final(@et3)
+	@lista.add_at_final(@et4)
+	expect(@lista.clasf_hidratos).to eq([25.8,18.9,20.8,52.1])
+	expect(@lista.clasf_hidratos.all?).to eq(true)
+	expect(@lista.clasf_hidratos.any?).to eq(true)
+	end
+	it "metodo count para contar los elementos y el metodo min/max para el minimo y el maximo" do
+	@lista.add_at_final(@et1)
+	@lista.add_at_final(@et2)
+	@lista.add_at_final(@et3)
+	@lista.add_at_final(@et4)
+	expect(@lista.clasf_hidratos.count).to eq(4)
+	expect(@lista.clasf_hidratos.min).to eq(18.9)
+	expect(@lista.clasf_hidratos.max).to eq(52.1)
+	end
+	it "metodo para sortear los valores, mapear/collect los valores segun una funcion" do
+	@lista.add_at_final(@et1)
+	@lista.add_at_final(@et2)
+	@lista.add_at_final(@et3)
+	@lista.add_at_final(@et4)
+	expect(@lista.clasf_hidratos.sort).to eq([18.9,20.8,25.8,52.1])
+	expect(@lista.clasf_hidratos.map { |x| (x*(2*x)).round(2)}).to eq([1331.28,714.42,865.28,5428.82])
+	expect(@lista.clasf_hidratos.collect {|i| (i*i).round(2) }).to eq([665.64,357.21,432.64,2714.41])
+	end
+	it "metodo para detectar/buscar aquellos valores segun una determinada funcion" do
+	@lista.add_at_final(@et1)
+	@lista.add_at_final(@et2)
+	@lista.add_at_final(@et3)
+	@lista.add_at_final(@et4)
+	expect(@lista.clasf_hidratos.detect {|i| ((i%2).round(2) == 0.8)}).to eq(20.8)
+	expect(@lista.clasf_hidratos.find {|i| (i%5).round(2) == 0.8}).to eq(25.8)
+	expect(@lista.clasf_hidratos.find_all { |i| ((i%2).round(2) == 0.1)}).to eq([52.1])
+	expect(@lista.clasf_hidratos.select { |num| num.round(2) > 20.0 }).to eq([25.8,20.8,52.1])
+	end
+      
+    end
  end	

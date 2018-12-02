@@ -26,7 +26,7 @@ class Tag
   end
 
   def <=>(otro)
-      nombre_etiqueta <=> otro.nombre_etiqueta
+      hidratos <=> otro.hidratos
   end
 
   def obtener_nombre
