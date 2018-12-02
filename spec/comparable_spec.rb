@@ -176,7 +176,54 @@ RSpec.describe Etiqueta do
 	expect(@lista.clasf_hidratos.find {|i| (i%5).round(2) == 0.8}).to eq(25.8)
 	expect(@lista.clasf_hidratos.find_all { |i| ((i%2).round(2) == 0.1)}).to eq([52.1])
 	expect(@lista.clasf_hidratos.select { |num| num.round(2) > 20.0 }).to eq([25.8,20.8,52.1])
+	end    
+    end
+
+    describe "enumerar los valores nutricionales de los pacientes" do
+	it "probando los diferentes metodos de enumeracion de la lista de valores nutricionales de los pacientes"do
+	@lista.add_at_final(@pac1)
+	@lista.add_at_final(@pac2)
+	@lista.add_at_final(@pac3)
+	@lista.add_at_final(@pac4)
+	end
+	it "comprobando a ver si se han insertado correctamente y el metodo any/all" do
+	@lista.add_at_final(@pac1)
+	@lista.add_at_final(@pac2)
+	@lista.add_at_final(@pac3)
+	@lista.add_at_final(@pac4)
+	expect(@lista.clasf_peso).to eq([95.5,74,98.4,85.3])
+	expect(@lista.clasf_peso.all?).to eq(true)
+	expect(@lista.clasf_peso.any?).to eq(true)
+	end
+	it "metodo count para contar los elementos y el metodo min/max para el minimo y el maximo" do
+	@lista.add_at_final(@pac1)
+	@lista.add_at_final(@pac2)
+	@lista.add_at_final(@pac3)
+	@lista.add_at_final(@pac4)
+	expect(@lista.clasf_peso.count).to eq(4)
+	expect(@lista.clasf_peso.min).to eq(74)
+	expect(@lista.clasf_peso.max).to eq(98.4)
+	end
+	it "metodo para sortear los valores, mapear/collect los valores segun una funcion" do
+	@lista.add_at_final(@pac1)
+	@lista.add_at_final(@pac2)
+	@lista.add_at_final(@pac3)
+	@lista.add_at_final(@pac4)
+	expect(@lista.clasf_peso.sort).to eq([74,85.3,95.5,98.4])
+	expect(@lista.clasf_peso.map { |x| (x*(3*x)).round(2)}).to eq([27360.75,16428,29047.68,21828.27])
+	expect(@lista.clasf_peso.collect {|i| (i*i).round(2) }).to eq([9120.25,5476,9682.56,7276.09])
+	end
+	it "metodo para detectar/buscar aquellos valores segun una determinada funcion" do
+	@lista.add_at_final(@pac1)
+	@lista.add_at_final(@pac2)
+	@lista.add_at_final(@pac3)
+	@lista.add_at_final(@pac4)
+	expect(@lista.clasf_peso.detect {|i| ((i%2).round(2) == 0.4)}).to eq(98.4)
+	expect(@lista.clasf_peso.find {|i| (i%5).round(2) == 0.5}).to eq(95.5)
+	expect(@lista.clasf_peso.find_all { |i| ((i%2).round(2) == 0)}).to eq([74])
+	expect(@lista.clasf_peso.select { |num| num.round(2) > 85.0 }).to eq([95.5,98.4,85.3])
 	end
       
     end
+
  end	
