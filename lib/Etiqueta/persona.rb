@@ -27,5 +27,6 @@ class Paciente < Individuo
 
   def get_data
      @data
+  end
 end
 
