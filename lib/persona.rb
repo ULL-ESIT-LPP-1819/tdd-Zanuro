@@ -10,6 +10,8 @@ class Individuo
 end
 
 class Paciente < Individuo
+
+  include Comparable
   attr_accessor :data
 
   def initialize(nombre,peso,altura,sexo,edad,cintura,cadera)
@@ -17,6 +19,8 @@ class Paciente < Individuo
     @data= Datos.new(peso,altura,sexo,edad,cintura,cadera)
   end
 
+  def <=>(otro)
+      peso <=> otro.peso
   def to_s
     s << super.to_s
     s << ", #{data})"
