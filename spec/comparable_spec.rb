@@ -49,15 +49,16 @@ RSpec.describe Etiqueta do
 
   describe "almacenar los datos" do
      it "se almacenan los datos" do
-	expect(@pac1.peso).to eq(72.3)
-	expect(@pac1.cadera).to eq(95.5)
-	expect(@pac2.edad).to eq(38)
-	expect(@pac2.cintura).to eq(70.2)
-	expect(@pac3.altura).to eq(178.2)
-	expect(@pac3.sexo).to eq('1')
-	expect(@pac4.cintura).to eq(75.3)
-	expect(@pac4.edad).to eq(18)
-
+	expect(@pac1.data.peso).to eq(72.3)
+	expect(@pac1.data.cadera).to eq(95.5)
+	expect(@pac2.data.edad).to eq(38)
+	expect(@pac2.data.cintura).to eq(70.2)
+	expect(@pac3.data.altura).to eq(178.2)
+	expect(@pac3.data.sexo).to eq('1')
+	expect(@pac4.data.cintura).to eq(75.3)
+	expect(@pac4.data.edad).to eq(18)
+      end
+  end
 
   describe "Comparando los valores de las etiquetas en funcion del nombre de la etiqueta" do
 	it "Etiqueta menor que otra" do
@@ -77,10 +78,6 @@ RSpec.describe Etiqueta do
 	expect(@et1 >= @et2).to eq(true)
 	expect(@et3 >= @et4).to eq(true)
 	end   
-	it "Etiqueta menor que otra" do
-	expect(@et1 < @et2).to eq(false)
-	expect(@et3 < @et4).to eq(false)
-	end
 	it "Etiqueta igual que otra" do
 	expect(@et1 == @et2).to eq(false)
 	expect(@et3 == @et4).to eq(false)
@@ -107,10 +104,6 @@ RSpec.describe Etiqueta do
 	it "Etiqueta mayor o igual que otra" do
 	expect(@pac1 >= @pac2).to eq(true)
 	expect(@pac3 >= @pac4).to eq(true)
-	end   
-	it "Etiqueta menor que otra" do
-	expect(@pac1 < @pac2).to eq(false)
-	expect(@pac3 < @pac4).to eq(false)
 	end
 	it "Etiqueta igual que otra" do
 	expect(@pac1 == @pac2).to eq(false)
@@ -122,4 +115,3 @@ RSpec.describe Etiqueta do
 	end    
      end
  end	
-
