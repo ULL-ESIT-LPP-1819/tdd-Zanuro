@@ -15,8 +15,26 @@ RSpec.describe Etiqueta do
      @pac2 =  Paciente.new("Maria",62.2,167.2,'0',38,70.2,74)
      @pac3 =  Paciente.new("Jose",97.3,178.2,'1',31,88,98.4)
      @pac4 =  Paciente.new("Jesus",68.3,172.0,'1',18,75.3,85.3)
+     @lista = ListaDoble.new(0)     
   end
  	 
+  describe "insercion" do
+    it "Se comprueba la insercion de los elementos" do
+	@lista.add_at_final(@et1)
+	#puts "#{@lista.get_tail} \n"
+	expect(@lista.get_tail).equal?(Node)
+	@lista.add_at_final(@et2)
+	expect(@lista.get_tail.value.nombre_etiqueta).to eq("Hamburguesa")
+	#puts "#{@lista.get_tail} \n"	
+        @lista.add_at_final(@et3)
+	expect(@lista.get_tail.value.nombre_etiqueta).to eq("Platano")
+	#puts "#{@lista.get_tail} \n"
+	@lista.add_at_final(@et4)
+	expect(@lista.get_tail.value.nombre_etiqueta).to eq("Pan")
+	#puts "#{@lista.get_tail} \n"
+    end 
+  end
+	 
   describe "almacenamiento de la etiqueta" do
     it "Se almacena la etiqueta " do
         expect(@et1.nombre_etiqueta).to eq("Pizza")
@@ -114,4 +132,24 @@ RSpec.describe Etiqueta do
 	expect(@pac2.between?(@pac3,@pac4)).to eq(false)
 	end    
      end
+	
+     describe "enumerar las etiquetas de informacion nutricional" do
+	it "probando los diferentes metodos de enumeracion de la lista de etiquetas de informacion nutricional"do
+	@lista.add_at_final(@et1)
+	@lista.add_at_final(@et2)
+	@lista.add_at_final(@et3)
+	@lista.add_at_final(@et4)
+	expect(@lista.all?).to eq(true)
+	expect(@lista.any?).to eq(true)
+	expect(@lista.count).to eq(4)
+	expect(@lista.min).to eq(18.9)
+	expect(@lista.max).to eq(52.1)
+	expect(@lista.sort).to eq([18.9,20.8,25.8,52.1])
+	expect(@lista.map{i|i*(2*i)}).to eq([714.42,865.28,1331.28,5428.82])
+	expect(@lista.collect{i|i*i}).to eq([357.21,432.64,665.64,2714.41])
+	expect(@lista.detect {|i| i%2 == 0.8 or i%2 == 0.9}).to eq([18.9,20.8])
+	expect(@lista.find {|i| i%5 == 0.8}).to eq(25.8)
+	expect(@lista.find_all { |i| i%2 == 0.1}).to eq(52.1)
+	expect(@lista.select { |num| num > 20.0 }).to eq([20.8,25.8,52.1])
+	expect(@lista.drop(25.8)).to eq([18.9,20.8,52.1])
  end	
