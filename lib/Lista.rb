@@ -218,4 +218,15 @@ def empty
    end
    return lista
   end
+  
+  def clasf_peso
+	
+   lista=[]
+   current_node=@head
+   while(!current_node.nil?)
+	lista.append(current_node.value.data.cadera)
+	current_node=current_node.next
+   end
+   return lista
+  end
 end
