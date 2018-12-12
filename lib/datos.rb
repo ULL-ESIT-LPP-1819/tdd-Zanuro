@@ -2,12 +2,12 @@ class Datos
   attr_accessor :peso, :altura, :edad, :cintura, :cadera
   attr_reader  :sexo
   def initialize(peso,altura,sexo,edad,cintura,cadera)
-    @peso = Float(peso)
-    @altura = Float(altura)
-    @sexo  = String(sexo)  #0 para mujeres y 1 para hombres
-    @edad = Integer(edad)
-    @cintura = Float(cintura)
-    @cadera = Float(cadera)
+    @peso = peso
+    @altura = altura
+    @sexo  = sexo  #0 para mujeres y 1 para hombres
+    @edad = edad
+    @cintura = cintura
+    @cadera = cadera
   end
   def imc
     #puts "Indice de masa corporal es: #{Float((a/(b**2))*(10**4)).round(2)}"
