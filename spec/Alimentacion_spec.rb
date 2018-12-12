@@ -11,14 +11,16 @@ RSpec.describe Etiqueta do
      
      @pac1 =  Paciente.new("Juan",72.3,182.3,'1',43,84.2,95.5,"Actividad intensa")
      @pac2 =  Paciente.new("Maria",62.2,167.2,'0',38,70.2,74,"Actividad ligera")
-     @pac3 =  Paciente.new("Jose",97.3,178.2,'1',31,88,98.4,"Reposo")
+     @pac3 =  Paciente.new("Jose",97.3,178.2,'1',31,88,98.4,"Actividad moderada")
      @pac4 =  Paciente.new("Jesus",68.3,172.0,'1',18,75.3,85.3,"Actividad moderada")
-     @pac5 =  Paciente.new("Ana",58.4,164.3,'0',21,66.2,74.3,"Actividad ligera")
+     @pac5 =  Paciente.new("Ana",58.4,164.3,'0',21,66.2,74.3,"Reposo")
      @lista = ListaDoble.new(0)
      @pacientes = ListaDoble.new(0)
      @menu1 = ListaDoble.new(0)
      @menu2 = ListaDoble.new(0)
-     @menu3 = ListaDoble.new(0)     
+     @menu3 = ListaDoble.new(0)
+     @menu4 = ListaDoble.new(0)
+     @menu5 = ListaDoble.new(0)     
   end
  	 
   describe "insercion" do
@@ -46,9 +48,9 @@ RSpec.describe Etiqueta do
 
 	expect(@pac1.gasto_energetico_total).to eq(2437.655)
 	expect(@pac2.gasto_energetico_total).to eq(1808.04)
-	expect(@pac3.gasto_energetico_total).to eq(1947.825)
+	expect(@pac3.gasto_energetico_total.round(2)).to eq(2425.93)
 	expect(@pac4.gasto_energetico_total).to eq(2064.59)
-	expect(@pac5.gasto_energetico_total.round(2)).to eq(1843.27)
+	expect(@pac5.gasto_energetico_total.round(2)).to eq(1661.96)
 	end
   end
 
@@ -86,7 +88,7 @@ RSpec.describe Etiqueta do
 	expect(@pac1.gasto_energetico_total).to eq(2437.655)
 	expect(@menu1.reduce(:+).between?((@pac1.gasto_energetico_total*0.90),(@pac1.gasto_energetico_total*1.10))).to eq(true)
 	expect(@menu1.reduce(:+).between?((@pac2.gasto_energetico_total*0.90),(@pac2.gasto_energetico_total*1.10))).to eq(false)
-	expect(@menu1.reduce(:+).between?((@pac3.gasto_energetico_total*0.90),(@pac3.gasto_energetico_total*1.10))).to eq(false)
+	expect(@menu1.reduce(:+).between?((@pac3.gasto_energetico_total*0.90),(@pac3.gasto_energetico_total*1.10))).to eq(true)
 	expect(@menu1.reduce(:+).between?((@pac4.gasto_energetico_total*0.90),(@pac4.gasto_energetico_total*1.10))).to eq(false)
 	expect(@menu1.reduce(:+).between?((@pac5.gasto_energetico_total*0.90),(@pac5.gasto_energetico_total*1.10))).to eq(false)
 	
@@ -96,28 +98,69 @@ RSpec.describe Etiqueta do
 	@menu2.add_at_final(@et1.suma_kcal)
 	@menu2.add_at_final(@et3.suma_kcal)
 
-	a=@menu1.zip(@menu2)
-	puts a[0]
-	puts a[1]
-	expect(@menu2.collect { |x| x.round(2)}).to eq([622.3,683.6,531.9,415.9,382.0])
-	expect(@menu2.reduce(:+).round(1)).to eq(2635.7)
-
+	#a=@menu1.zip(@menu2)
+	#puts a[0]
+	#puts a[1]
+	expect(@menu2.collect { |x| x.round(2)}).to eq([412.3,529.6,415.9,622.3,531.9])
+	expect(@menu2.reduce(:+).round(1)).to eq(2512.0)
+	
+	expect(@pac2.gasto_energetico_total).to eq(1808.04)
 	expect(@menu2.reduce(:+).between?((@pac1.gasto_energetico_total*0.90),(@pac1.gasto_energetico_total*1.10))).to eq(true)
 	expect(@menu2.reduce(:+).between?((@pac2.gasto_energetico_total*0.90),(@pac2.gasto_energetico_total*1.10))).to eq(false)
-	expect(@menu2.reduce(:+).between?((@pac3.gasto_energetico_total*0.90),(@pac3.gasto_energetico_total*1.10))).to eq(false)
+	expect(@menu2.reduce(:+).between?((@pac3.gasto_energetico_total*0.90),(@pac3.gasto_energetico_total*1.10))).to eq(true)
 	expect(@menu2.reduce(:+).between?((@pac4.gasto_energetico_total*0.90),(@pac4.gasto_energetico_total*1.10))).to eq(false)
 	expect(@menu2.reduce(:+).between?((@pac5.gasto_energetico_total*0.90),(@pac5.gasto_energetico_total*1.10))).to eq(false)
 	
-	expect(@menu1.collect { |x| x.round(2)}).to eq([622.3,683.6,531.9,415.9,382.0])
-	expect(@menu1.reduce(:+).round(1)).to eq(2635.7)
-	expect(@menu1.reduce(:+).between?((@pac1.gasto_energetico_total*0.90),(@pac1.gasto_energetico_total*1.10))).to eq(true)
-	expect(@menu1.reduce(:+).between?((@pac2.gasto_energetico_total*0.90),(@pac2.gasto_energetico_total*1.10))).to eq(false)
-	expect(@menu1.reduce(:+).between?((@pac3.gasto_energetico_total*0.90),(@pac3.gasto_energetico_total*1.10))).to eq(false)
-	expect(@menu1.reduce(:+).between?((@pac4.gasto_energetico_total*0.90),(@pac4.gasto_energetico_total*1.10))).to eq(false)
-	expect(@menu1.reduce(:+).between?((@pac5.gasto_energetico_total*0.90),(@pac5.gasto_energetico_total*1.10))).to eq(false)
+	@menu3.add_at_final(@et4.suma_kcal)
+	@menu3.add_at_final(@et2.suma_kcal)
+	@menu3.add_at_final(@et7.suma_kcal)
+	@menu3.add_at_final(@et5.suma_kcal)
+	@menu3.add_at_final(@et1.suma_kcal)
+
+	expect(@menu3.collect { |x| x.round(2)}).to eq([415.9,683.6,529.6,382.0,622.3])
+	expect(@menu3.reduce(:+).round(1)).to eq(2633.4)
+	expect(@menu3.reduce(:+).between?((@pac1.gasto_energetico_total*0.90),(@pac1.gasto_energetico_total*1.10))).to eq(true)
+	expect(@menu3.reduce(:+).between?((@pac2.gasto_energetico_total*0.90),(@pac2.gasto_energetico_total*1.10))).to eq(false)
+	expect(@menu3.reduce(:+).between?((@pac3.gasto_energetico_total*0.90),(@pac3.gasto_energetico_total*1.10))).to eq(true)
+	expect(@menu3.reduce(:+).between?((@pac4.gasto_energetico_total*0.90),(@pac4.gasto_energetico_total*1.10))).to eq(false)
+	expect(@menu3.reduce(:+).between?((@pac5.gasto_energetico_total*0.90),(@pac5.gasto_energetico_total*1.10))).to eq(false)
 	
 	
-	#a = @menu1.zip(@menu2)
+	@menu4.add_at_final(@et2.suma_kcal)
+	@menu4.add_at_final(@et5.suma_kcal)
+	@menu4.add_at_final(@et7.suma_kcal)
+	
+	expect(@menu4.collect { |x| x.round(2)}).to eq([683.6,382.0,529.6])
+	expect(@menu4.reduce(:+).round(1)).to eq(1595.2)
+	expect(@menu4.reduce(:+).between?((@pac1.gasto_energetico_total*0.90),(@pac1.gasto_energetico_total*1.10))).to eq(false)
+	expect(@menu4.reduce(:+).between?((@pac2.gasto_energetico_total*0.90),(@pac2.gasto_energetico_total*1.10))).to eq(false)
+	expect(@menu4.reduce(:+).between?((@pac3.gasto_energetico_total*0.90),(@pac3.gasto_energetico_total*1.10))).to eq(false)
+	expect(@menu4.reduce(:+).between?((@pac4.gasto_energetico_total*0.90),(@pac4.gasto_energetico_total*1.10))).to eq(false)
+	expect(@menu4.reduce(:+).between?((@pac5.gasto_energetico_total*0.90),(@pac5.gasto_energetico_total*1.10))).to eq(true)
+	
+	@menu5.add_at_final(@et4.suma_kcal)
+	@menu5.add_at_final(@et7.suma_kcal)
+	@menu5.add_at_final(@et1.suma_kcal)
+	@menu5.add_at_final(@et2.suma_kcal)
+
+	expect(@menu5.collect { |x| x.round(2)}).to eq([415.9,529.6,622.3,683.6])
+	expect(@menu5.reduce(:+).round(1)).to eq(2251.4)
+	expect(@menu5.reduce(:+).between?((@pac1.gasto_energetico_total*0.90),(@pac1.gasto_energetico_total*1.10))).to eq(true)
+	expect(@menu5.reduce(:+).between?((@pac2.gasto_energetico_total*0.90),(@pac2.gasto_energetico_total*1.10))).to eq(false)
+	expect(@menu5.reduce(:+).between?((@pac3.gasto_energetico_total*0.90),(@pac3.gasto_energetico_total*1.10))).to eq(true)
+	expect(@menu5.reduce(:+).between?((@pac4.gasto_energetico_total*0.90),(@pac4.gasto_energetico_total*1.10))).to eq(true)
+	expect(@menu5.reduce(:+).between?((@pac5.gasto_energetico_total*0.90),(@pac5.gasto_energetico_total*1.10))).to eq(false)
+		
+	a = @menu1.zip(@menu2,@menu3,@menu4,@menu5)
+	puts a[0]
+	expect(a[0].collect { |x| x.round(2)}).to eq([622.3,412.3,415.9,683.6,415.9])
+	expect(a[0].reduce(:+).round(1)).to eq(2550.0)
+	expect(a[0].reduce(:+).between?((@pac1.gasto_energetico_total*0.90),(@pac1.gasto_energetico_total*1.10))).to eq(true)
+	expect(a[0].reduce(:+).between?((@pac2.gasto_energetico_total*0.90),(@pac2.gasto_energetico_total*1.10))).to eq(false)
+	expect(a[0].reduce(:+).between?((@pac3.gasto_energetico_total*0.90),(@pac3.gasto_energetico_total*1.10))).to eq(true)
+	expect(a[0].reduce(:+).between?((@pac4.gasto_energetico_total*0.90),(@pac4.gasto_energetico_total*1.10))).to eq(false)
+	expect(a[0].reduce(:+).between?((@pac5.gasto_energetico_total*0.90),(@pac5.gasto_energetico_total*1.10))).to eq(false)
+
      end
   end
 
