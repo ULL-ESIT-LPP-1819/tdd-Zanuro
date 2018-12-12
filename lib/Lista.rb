@@ -15,9 +15,14 @@ class ListaDoble
       @head.value <=> otro.head.value
   end	
   def each
-      yield @head.value
+      a = @head
+      while(!a.nil?)
+      yield a.value
+      a=a.next
+      end
   end
-  def position(pos)
+
+ def position(pos)
 	if @head.nil?
 	puts "La lista esta vacia"
 	end
@@ -206,8 +211,7 @@ def empty
     puts "Personas con obesidad: #{lista4}"
   end
 
-  VAR_GLOBAL=0	
-  def clasf_hidratos
+   def clasf_hidratos
 
    lista=[]
 
