@@ -83,12 +83,14 @@ RSpec.describe Etiqueta do
 	@menu1.add_at_final(@et3.suma_kcal)
 	@menu1.add_at_final(@et4.suma_kcal)
 	@menu1.add_at_final(@et5.suma_kcal)
+
 	expect(@menu1.collect { |x| x.round(2)}).to eq([622.3,683.6,531.9,415.9,382.0])
 	expect(@menu1.reduce(:+).round(1)).to eq(2635.7)
 	expect(@pac1.gasto_energetico_total).to eq(2437.655)
+
 	expect(@menu1.reduce(:+).between?((@pac1.gasto_energetico_total*0.90),(@pac1.gasto_energetico_total*1.10))).to eq(true)
 	expect(@menu1.reduce(:+).between?((@pac2.gasto_energetico_total*0.90),(@pac2.gasto_energetico_total*1.10))).to eq(false)
-	expect(@menu1.reduce(:+).between?((@pac3.gasto_energetico_total*0.90),(@pac3.gasto_energetico_total*1.10))).to eq(true)
+  	expect(@menu1.reduce(:+).between?((@pac3.gasto_energetico_total*0.90),(@pac3.gasto_energetico_total*1.10))).to eq(true)
 	expect(@menu1.reduce(:+).between?((@pac4.gasto_energetico_total*0.90),(@pac4.gasto_energetico_total*1.10))).to eq(false)
 	expect(@menu1.reduce(:+).between?((@pac5.gasto_energetico_total*0.90),(@pac5.gasto_energetico_total*1.10))).to eq(false)
 	
