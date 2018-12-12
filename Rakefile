@@ -5,13 +5,13 @@
 
 task :default => :spec
 
-desc "Ejecutar pruebas sobre la clase Comparable"
+desc "Ejecutar pruebas sobre la clase Alimentacion"
 task :spec do
-  sh "rspec -I. spec/comparable_spec.rb"
+  sh "rspec -I. spec/Alimentacion_spec.rb"
 end
 
 desc "Ejecutar con documentacion"
 task :doc do
-  sh "rspec -I. spec/comparable_spec.rb --format documentation"
+  sh "rspec -I. spec/Alimentacion_spec.rb --format documentation"
 end
 
