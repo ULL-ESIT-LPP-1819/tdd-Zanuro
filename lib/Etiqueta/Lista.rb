@@ -160,49 +160,7 @@ def empty
 	return aux
     end
   end
-  def insert_after(nodo1,nodo2)
-    if @head.nil?
-      @head=nodo1
-      @head.next = nodo2
-      nodo2.prev = @head
-      @tail = nodo2
-    else
-      current_node = @head
-      while current_node != nil
-        if current_node.value == nodo1.value
-          current_node.next.prev(nodo2)
-          nodo2.next(current_node.next)
-          current_node.next(nodo2)
-          nodo2.prev(current_node)
-        else
-          current_node = current_node.next
-        end
-      end
-  end
-  end
-
-  def delete_nodo(nodo)
-    current_node = @head
-    if current_node.value == nodo.value
-      @head = @head.next
-      @head.prev(nil)
-      current_node.next(nil)
-      return current_node
-    else
-      while current_node != nil
-        current_node = current_node.next
-        if current_node.value == nodo.value
-          current_node.prev.next(current_node.next)
-          current_node.next.prev(current_node.prev)
-          current_node.next(nil)
-          current_node.prev(nil)
-          return current_node
-        end
-      end
-    end
-  end
-
-  def print
+   def print
     current_node = @head
     while !(current_node.nil?)
       puts current_node.value.nombre_etiqueta.to_s
