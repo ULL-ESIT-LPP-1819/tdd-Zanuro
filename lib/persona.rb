@@ -20,7 +20,7 @@ class Paciente < Individuo
   end
 
   def <=>(otro)
-      data.cadera <=> otro.data.cadera
+      gasto_energetico_total <=> otro.gasto_energetico_total
   end
   def to_s
     s << super.to_s

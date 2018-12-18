@@ -21,6 +21,49 @@ class ListaDoble
       a=a.next
       end
   end
+ 
+ def ordernar_con_for
+     a = @head
+     lista_ordenada=[a.value]
+     
+     for i in (1..@length-1)
+	a=a.next
+	for j in (0...i)
+		if(lista_ordenada[j]>=a.value)
+		   lista_ordenada.insert(j,a.value)
+		   break
+		elsif(lista_ordenada[lista_ordenada.size-1] <= a.value)
+		      lista_ordenada.push(a.value)
+		      break
+		end
+	end
+     end
+     return lista_ordenada
+end
+
+def ordenar_con_each
+	a=@head
+	lista_ord=[a.value]
+	j=0
+	i=0
+	self[1..@length-1].each do |x|
+  	    lista_ord[j..i].each do |y|
+   
+  	      if(x<=y)
+    		lista_ord.insert(j,x)
+    		break
+
+  	      elsif(lista_ord[lista_ord.size-1]<=y)
+    		lista_ord.push(x)
+    		break
+  	      end
+  	    end
+  	    i +=1
+          end
+       return lista_ord
+end
+                 	
+     
 
  def position(pos)
 	if @head.nil?

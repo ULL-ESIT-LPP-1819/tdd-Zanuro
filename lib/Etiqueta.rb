@@ -27,7 +27,7 @@ class Tag
   end
 
   def <=>(otro)
-      hidratos <=> otro.hidratos
+      suma_kcal <=> otro.suma_kcal
   end
 
   def obtener_nombre
