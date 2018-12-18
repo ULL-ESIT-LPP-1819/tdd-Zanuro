@@ -80,24 +80,6 @@ end
 	return copia[:value]
    end
 		
-  def get_head
-    @head
-  end
-  def get_tail
-    @tail
-  end
-
-  def push_nodo(nodo)
-    #nodo = Node(nodo.value,nodo.next,nodo.prev)
-    @head ||= nodo
-
-    if @tail
-      @tail.next = nodo
-      nodo.prev = @tail
-    end
-    @tail = nodo
-    @length+=1
-  end
   def add_at_final(et)
     nodo = Node.new(et,nil,nil)    
     if self.empty
@@ -134,18 +116,6 @@ def empty
     end
   end
 
-  def extraer_begino
-    if @head == nil
-      return nil
-    else
-      current_node = @head
-      @head = @head.next
-      @head.prev = nil
-      current_node.next = nil
-      @length-=1
-      return current_node
-    end
-  end
   def extraer_begin
     if @tail.nil?
       return nil
@@ -184,55 +154,6 @@ def empty
      end
      puts "Lista con valores de la sal menores que 6 :#{lista1}"
      puts "Lista con valores de la sal mayores que 6 :#{lista2}" 
-  end
-
-  def clasf_imc
-
-    lista1 = []
-    lista2 = []
-    lista3 = []
-    lista4 = []
-
-    current_node = @head
-    while(!current_node.nil?)
-      case current_node.value.data.imc
-      when 5.0...18.5
-        lista1.append(current_node.value.nombre)
-      when 18.5...25.0
-        lista2.append(current_node.value.nombre)
-      when 25.0...30.0
-        lista3.append(current_node.value.nombre)
-      when 30.0..50.0
-        lista4.append(current_node.value.nombre)
-      end
-      current_node = current_node.next
-    end
-    puts "Personas con insuficiencia ponderal :#{lista1}"
-    puts "Personas con un intervalo normal :#{lista2}"
-    puts "Personas con sobrepeso : #{lista3}"
-    puts "Personas con obesidad: #{lista4}"
-  end
-
-   def clasf_hidratos
-
-   lista=[]
-
-   current_node=@head
-   while(!current_node.nil?)
-	lista.append(current_node.value.hidratos)
-	current_node=current_node.next
    end
-   return lista
-  end
-  
-  def clasf_peso
-	
-   lista=[]
-   current_node=@head
-   while(!current_node.nil?)
-	lista.append(current_node.value.data.cadera)
-	current_node=current_node.next
-   end
-   return lista
-  end
+
 end

@@ -34,36 +34,6 @@ class Tag
    # puts "El nombre de la etiqueta es: #{@nombre_etiqueta}"
     @nombre_etiqueta
   end
-  def obtener_grasas
-    puts "La cantidad de grasas es: #{@grasas}"
-    @grasas
-  end
-  def obtener_grasas_sat
-    puts "La cantidad de grasas saturadas es: #{@grasas_saturadas}"
-    @grasas_saturadas
-  end
-  def obtener_hidratos
-    puts "La cantidad de hidratos es: #{@hidratos}"
-    @hidratos
-  end
-  def obtener_azucares
-    puts "La cantidad de azucares es: #{@azucares}"
-    @azucares
-  end 
-  def obtener_proteinas
-    puts "La cantidad de proteinas es: #{@proteinas}"
-    @proteinas
-  end
-  def obtener_sal
-    puts "La cantidad de sal es: #{sal}"
-    @sal
-  end
-  def obtener_lipidos
-    @lipidos
-  end
-  def obtener_fibra
-    @fibra_alim
-  end
   def porciones
     if @dividido == "T"
       a=6
@@ -113,38 +83,6 @@ class Tag
     self.grasa_kcal_g + self.hidratos_kcal_g+self.fibra_kcal_g+self.proteinas_kcal_g+self.sal_kcal_g+self.azucar_kcal_g+self.lipidos_kcal_g
   end
 
-  def ingesta_referencia(valor)
-    ((valor*100)/self.suma_valores).round(2)
-
-  end
-
-  def grasa_kj_g
-   (@grasas*37).round(1)
-  end
-  def monoins_kj_g
-    (@grasas_mono_insaturadas*37).round(1)
-  end
-  def poli_kj_g
-   (@grasas_poliinsaturadas*37).round(1)
-  end
-  def hidratos_kj_g
-    (@hidratos*17).round(1)
-  end
-  def polialcoles_kj_g
-    (@polialcoholes*10).round(1)
-  end
-  def almidon_kj_g
-    (@almidon*17).round(1)
-  end
-  def fibra_kj_g
-    (@fibra_alim*8).round(1)
-  end
-  def proteinas_kj_g
-    (@proteinas*17).round(1)
-  end
-  def sal_kj_g
-    (@sal*25).round(1)
-  end
   def grasa_kcal_g
     (@grasas*9).round(1)
   end
