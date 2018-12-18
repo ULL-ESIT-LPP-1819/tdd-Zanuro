@@ -1,6 +1,9 @@
+require "Etiqueta/version"
 Node = Struct.new(:value, :next, :prev)
 
 class ListaDoble
+  include Comparable,Enumerable
+
   attr_accessor :head, :tail, :length
 
   def initialize(length)
@@ -8,7 +11,75 @@ class ListaDoble
     @tail = nil
     @length = length
   end
+  
+  def <=>(otro)
+      @head.value <=> otro.head.value
+  end	
+  def each
+      a = @head
+      while(!a.nil?)
+      yield a.value
+      a=a.next
+      end
+  end
+ 
+ def ordenar_con_for
+    @temp = self.map{|x| x}
+    lista_ordenada=[]
+    lista_ordenada.push(@temp[0])
+    for i in (1..@length-1)
+	a=@temp[i]
+	for j in (0..i)
+	    if(lista_ordenada[j]>=a)
+		lista_ordenada.insert(j,a)
+	        break
+	    elsif(lista_ordenada[lista_ordenada.size-1] <= a)
+	  	lista_ordenada.push(a)
+		break
+	    end
+	end
+     end
+   return lista_ordenada 
+    	
+end
 
+def ordenar_con_each
+        
+        @temp  = self.map{ |x| x}
+
+	i=0
+	@temp.each do |x|
+            a=x
+            i1=i
+	    j=i1+1
+  	    @temp[j..@temp.length-1].each do |y|  
+  	      if a > y
+    		 a = y
+    		 i1 = j
+              end
+              j+=1
+  	      end
+  	    @temp[i1]=x
+            @temp[i]=a
+	    i+=1
+          end
+      @temp
+end
+                 	
+ def position(pos)
+	if @head.nil?
+	puts "La lista esta vacia"
+	end
+	contador=0
+	copia=@head
+	while contador<pos && !copia.nil?
+		copia2= copia[:next]
+		copia=copia2
+		contador +=1
+	end
+	return copia[:value]
+   end
+		
   def get_head
     @head
   end
@@ -158,6 +229,7 @@ def empty
   end
 
   def clasf_imc
+
     lista1 = []
     lista2 = []
     lista3 = []
@@ -165,15 +237,15 @@ def empty
 
     current_node = @head
     while(!current_node.nil?)
-      case current_node.value.imc
-      when current_node.value.imc < 18.5
-        lista1.append(current_node.value.imc)
-      when 18.5..24.9
-        lista2.append(current_node.value.imc)
-      when 25.0..29.9
-        lista3.append(current_node.value.imc)
-      when current_node.value.imc >= 30.0
-        lista4.append(current_node.value.imc)
+      case current_node.value.data.imc
+      when 5.0...18.5
+        lista1.append(current_node.value.nombre)
+      when 18.5...25.0
+        lista2.append(current_node.value.nombre)
+      when 25.0...30.0
+        lista3.append(current_node.value.nombre)
+      when 30.0..50.0
+        lista4.append(current_node.value.nombre)
       end
       current_node = current_node.next
     end
@@ -183,4 +255,26 @@ def empty
     puts "Personas con obesidad: #{lista4}"
   end
 
+   def clasf_hidratos
+
+   lista=[]
+
+   current_node=@head
+   while(!current_node.nil?)
+	lista.append(current_node.value.hidratos)
+	current_node=current_node.next
+   end
+   return lista
+  end
+  
+  def clasf_peso
+	
+   lista=[]
+   current_node=@head
+   while(!current_node.nil?)
+	lista.append(current_node.value.data.cadera)
+	current_node=current_node.next
+   end
+   return lista
+  end
 end
