@@ -42,11 +42,10 @@ class ListaDoble
 end
 
 def ordenar_con_each
-	a=@head
-	lista_ord=[a.value]
+	lista_ord=[]
 	j=0
 	i=0
-	self[1..@length-1].each do |x|
+	self.each do |x|
   	    lista_ord[j..i].each do |y|
    
   	      if(x<=y)

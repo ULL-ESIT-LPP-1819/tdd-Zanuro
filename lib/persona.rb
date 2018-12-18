@@ -43,7 +43,7 @@ class Paciente < Individuo
     end
   end
   def efecto_termogeno
-  	gasto_energetico*0.10
+  	self.gasto_energetico*0.10
   end	
   def nivel_actividad
       puts "Nivel de actividad"
@@ -59,10 +59,10 @@ class Paciente < Individuo
       end
    end
    def gasto_actividad_fisica
-	gasto_energetico*nivel_actividad
+	self.gasto_energetico*self.nivel_actividad
    end	
    def gasto_energetico_total
-	gasto_energetico+efecto_termogeno+gasto_actividad_fisica
+	self.gasto_energetico+self.efecto_termogeno+self.gasto_actividad_fisica
    end
 end
 
