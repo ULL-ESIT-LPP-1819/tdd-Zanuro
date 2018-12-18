@@ -28,13 +28,13 @@ RSpec.describe ListaDoble do
    end
    describe "ordenacion de la lista de las valoraciones nutricionales de individuos" do
   	it "ordenacion mediante el for" do
-	expect(@lista.ordenar_con_for).to eq([])
+	expect(@lista.ordenar_con_for).to eq([1661.96, 1735.6, 1759.45, 1808.04, 1858.67, 2026.23, 2064.59, 2425.93, 2437.66, 2576.44])
 	end
 	it "ordenacion mediante el each" do
-	expect(@lista.ordenar_con_each).to eq([])
+	expect(@lista.ordenar_con_each).to eq([1661.96, 1735.6, 1759.45, 1808.04, 1858.67, 2026.23, 2064.59, 2425.93, 2437.66, 2576.44])
 	end
 	it "ordenacion mediante el sort" do
-	expect(@lista.sort).to eq([])
+	expect(@lista.map{|x| x.gasto_energetico_total.round(2)}.sort).to eq([1661.96, 1735.6, 1759.45, 1808.04, 1858.67, 2026.23, 2064.59, 2425.93, 2437.66, 2576.44])
 	end
 	it "benchmark para la lista" do
 	
@@ -58,27 +58,27 @@ RSpec.describe Array do
      @et6 = Tag.new("Arroz",2.9,0.54,69.3,1.4,10.3,0,6,10.1,"F")
      @et7 = Tag.new("Tarta",16.8,4.8,18.6,41.4,3,15,5.2,0,"F")	 
              
-     @m0 = [@et3.suma_kcal,@et5.suma_kcal,@et7.suma_kcal].reduce(:+).round(1)
-     @m1 = [@et2.suma_kcal,@et6.suma_kcal,@et4.suma_kcal].reduce(:+).round(1)
-     @m2 = [@et1.suma_kcal,@et3.suma_kcal,@et5.suma_kcal].reduce(:+).round(1)
-     @m3 = [@et4.suma_kcal,@et1.suma_kcal,@et3.suma_kcal].reduce(:+).round(1)
-     @m4 = [@et5.suma_kcal,@et6.suma_kcal,@et7.suma_kcal].reduce(:+).round(1)
-     @m5 = [@et2.suma_kcal,@et3.suma_kcal,@et1.suma_kcal].reduce(:+).round(1)
-     @m6 = [@et4.suma_kcal,@et5.suma_kcal,@et6.suma_kcal].reduce(:+).round(1)
-     @m7 = [@et7.suma_kcal,@et2.suma_kcal,@et1.suma_kcal].reduce(:+).round(1)
-     @m8 = [@et5.suma_kcal,@et3.suma_kcal,@et4.suma_kcal].reduce(:+).round(1)
-     @m9 = [@et2.suma_kcal,@et7.suma_kcal,@et4.suma_kcal].reduce(:+).round(1)
+     @m0 = [@et3,@et5,@et7].suma
+     @m1 = [@et2,@et6,@et4].suma
+     @m2 = [@et1,@et3,@et5].suma
+     @m3 = [@et4,@et1,@et3].suma
+     @m4 = [@et5,@et6,@et7].suma
+     @m5 = [@et2,@et3,@et1].suma
+     @m6 = [@et4,@et5,@et6].suma
+     @m7 = [@et7,@et2,@et1].suma
+     @m8 = [@et5,@et3,@et4].suma
+     @m9 = [@et5,@et7,@et4].suma
      @array = [@m0,@m1,@m2,@m3,@m4,@m5,@m6,@m7,@m8,@m9]
  end	 
   describe "ordenacion del array de menus" do
   	it "ordenacion mediante el for" do
-	expect(@array.ordenar_con_for).to eq([1210.2,1323.9,1329.8,1443.5,1511.8,1536.2,1570.1,1629.1,1835.5,1837.8])
+	expect(@array.ordenar_con_for).to eq([1210.2, 1323.9, 1327.5, 1329.8, 1443.5, 1511.8, 1536.2, 1570.1, 1835.5, 1837.8])
 	end
 	it "ordenacion mediante el each" do
-	expect(@array.ordenar_con_each).to eq([1210.2,1323.9,1329.8,1443.5,1511.8,1536.2,1570.1,1629.1,1835.5,1837.8])
+	expect(@array.ordenar_con_each).to eq([1210.2, 1323.9, 1327.5, 1329.8, 1443.5, 1511.8, 1536.2, 1570.1, 1835.5, 1837.8])
 	end
 	it "ordenacion mediante el sort" do
-	expect(@array.sort).to eq([1210.2,1323.9,1329.8,1443.5,1511.8,1536.2,1570.1,1629.1,1835.5,1837.8])
+	expect(@array.sort).to eq([1210.2, 1323.9, 1327.5, 1329.8, 1443.5, 1511.8, 1536.2, 1570.1, 1835.5, 1837.8])
 	end
 	it "benchmark para el array" do
 

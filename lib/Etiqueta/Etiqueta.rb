@@ -26,7 +26,7 @@ class Tag
 
   end
 
-  def <=>(otro)
+  def <=> otro
       suma_kcal <=> otro.suma_kcal
   end
 

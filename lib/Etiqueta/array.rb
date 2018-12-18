@@ -42,5 +42,14 @@ def ordenar_con_each
           end
       @temp
 end
+
+def suma
+   @temp = self.map{|x| x.suma_kcal}
+	suma=0
+	for i in (0..@temp.length-1)
+	suma+=@temp[i]
+	end
+    return suma.round(1)
 end
 
+end

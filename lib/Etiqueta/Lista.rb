@@ -12,9 +12,9 @@ class ListaDoble
     @length = length
   end
   
-  def <=>(otro)
-      @head.value <=> otro.head.value
-  end	
+ # def <=>(otro)
+  #    @head.value <=> otro.head.value
+  #end	
   def each
       a = @head
       while(!a.nil?)
@@ -24,7 +24,7 @@ class ListaDoble
   end
  
  def ordenar_con_for
-    @temp = self.map{|x| x}
+    @temp = self.map{|x| x.gasto_energetico_total.round(2)}
     lista_ordenada=[]
     lista_ordenada.push(@temp[0])
     for i in (1..@length-1)
@@ -45,7 +45,7 @@ end
 
 def ordenar_con_each
         
-        @temp  = self.map{ |x| x}
+        @temp  = self.map{ |x| x.gasto_energetico_total.round(2)}
 
 	i=0
 	@temp.each do |x|

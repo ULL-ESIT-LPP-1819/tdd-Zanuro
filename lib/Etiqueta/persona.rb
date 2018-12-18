@@ -19,7 +19,7 @@ class Paciente < Individuo
     @data= Datos.new(peso,altura,sexo,edad,cintura,cadera)
   end
 
-  def <=>(otro)
+  def <=> otro
       gasto_energetico_total <=> otro.gasto_energetico_total
   end
   def to_s
