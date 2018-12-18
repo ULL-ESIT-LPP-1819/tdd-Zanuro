@@ -3,10 +3,7 @@ Coveralls.wear!
 
 
 require "bundler/setup"
-require 'Etiqueta.rb'
-require 'Lista.rb'
-require 'persona.rb'
-require 'datos.rb'
+require 'Etiqueta'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
