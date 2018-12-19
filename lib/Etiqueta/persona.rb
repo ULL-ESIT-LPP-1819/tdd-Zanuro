@@ -46,7 +46,6 @@ class Paciente < Individuo
   	self.gasto_energetico*0.10
   end	
   def nivel_actividad
-      puts "Nivel de actividad"
       case @fac_activ
       when "Reposo"
             0.0

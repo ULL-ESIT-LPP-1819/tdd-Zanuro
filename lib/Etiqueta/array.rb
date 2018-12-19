@@ -21,8 +21,8 @@ end
 
 
 def ordenar_con_each
-        
-        @temp  = self.map{ |x| x}
+     
+        @temp = self.map{|x| x}
 	lista_ord=[]
 	i=0
 	@temp.each do |x|
@@ -51,5 +51,4 @@ def suma
 	end
     return suma.round(1)
 end
-
 end

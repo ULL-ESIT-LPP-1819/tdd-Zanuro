@@ -30,11 +30,11 @@ RSpec.describe ListaDoble do
   	it "ordenacion mediante el for" do
 	expect(@lista.ordenar_con_for).to eq([1661.96, 1735.6, 1759.45, 1808.04, 1858.67, 2026.23, 2064.59, 2425.93, 2437.66, 2576.44])
 	end
-	it "ordenacion mediante el each" do
-	expect(@lista.ordenar_con_each).to eq([1661.96, 1735.6, 1759.45, 1808.04, 1858.67, 2026.23, 2064.59, 2425.93, 2437.66, 2576.44])
-	end
 	it "ordenacion mediante el sort" do
 	expect(@lista.map{|x| x.gasto_energetico_total.round(2)}.sort).to eq([1661.96, 1735.6, 1759.45, 1808.04, 1858.67, 2026.23, 2064.59, 2425.93, 2437.66, 2576.44])
+	end
+	it "ordenacion mediante el each" do
+	expect(@lista.ordenar_con_each).to eq([1661.96, 1735.6, 1759.45, 1808.04, 1858.67, 2026.23, 2064.59, 2425.93, 2437.66, 2576.44])
 	end
 	it "benchmark para la lista" do
 	

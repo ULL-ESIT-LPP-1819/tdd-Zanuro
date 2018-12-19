@@ -104,18 +104,6 @@ def empty
     end
   end
 
- def add_at_begin(nodo)
-    if @head.nil?
-      @head = nodo
-      @length+=1
-    else
-      @head.prev = nodo
-      nodo.next = @head
-      @head = nodo
-      @length+=1
-    end
-  end
-
   def extraer_begin
     if @tail.nil?
       return nil
@@ -136,24 +124,5 @@ def empty
       puts current_node.value.nombre_etiqueta.to_s
       current_node = current_node.next
     end
-  end
-
-  def clasificacion
-
-    lista1 = []
-    lista2 = []
-
-    current_node = @head
-    while(!current_node.nil?)
-	if current_node.value.sal < 6
-	lista1.append(current_node.value.sal)
-	else
-	lista2.append(current_node.value.sal)
-	end
-	current_node = current_node.next
-     end
-     puts "Lista con valores de la sal menores que 6 :#{lista1}"
-     puts "Lista con valores de la sal mayores que 6 :#{lista2}" 
    end
-
 end

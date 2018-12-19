@@ -29,56 +29,17 @@ class Tag
   def <=> otro
       suma_kcal <=> otro.suma_kcal
   end
-
+  
+  def +(otro)
+      return self.suma_kcal+otro.suma_kcal
+  end 
   def obtener_nombre
    # puts "El nombre de la etiqueta es: #{@nombre_etiqueta}"
     @nombre_etiqueta
-  end
-  def porciones
-    if @dividido == "T"
-      a=6
-      a=a.to_f
-      puts "El paquete se encuentra dividido en: #{a} porciones"
-      puts "Cada paquete tiene un tamaño de #{self.suma_valores}"
-      puts "Cada paquete contendra lo siguiente:"
-      puts "#{@grasas} grasas, #{@grasas_saturadas/a} grasas saturadas,#{@hidratos/a} hidratos, #{@azucares/a} azucares,
-      #{@proteinas/a} proteinas, #{@sal/a} sal"
-      if @grasas_mono_insaturadas > 0
-        puts "El paquete tambien contiene : #{@grasas_mono_insaturadas/a}"
-      end
-      if @grasas_poliinsaturadas > 0
-        puts "El paquete tambien contiene : #{@grasas_poliinsaturadas/a}"
-      end
-      if @polialcoholes > 0
-        puts "El paquete tambien contiene : #{@polialcoholes/a}"
-      end
-      if fibra_alim > 0
-        puts "El paquete tambien contiene: #{@fibra_alim/a}"
-      end
-      if vitaminas > 0
-        puts "El paquete contiene:  #{@vitaminas/a}"
-      end
-
-      if minerales > 0
-        puts "El paquete contiene #{@minerales/a}"
-      end
-      return a
-    else
-      puts "El paquete no se encuentra dividido en paquetes"
-      puts "Unico paquete de tamaño #{self.suma_valores}"
-      return 1
-    end
-    end
-
-  
+  end 
   def suma_valores
     @grasas+@hidratos+@azucares+@proteinas+@sal+@fibra_alim+@lipidos
   end
-
-  def suma_kj
-    self.grasa_kj_g + self.monoins_kj_g+self.poli_kj_g+self.hidratos_kj_g+self.polialcoles_kj_g+self.almidon_kj_g+self.fibra_kj_g+self.proteinas_kj_g+self.sal_kj_g
-  end
-
   def suma_kcal
     self.grasa_kcal_g + self.hidratos_kcal_g+self.fibra_kcal_g+self.proteinas_kcal_g+self.sal_kcal_g+self.azucar_kcal_g+self.lipidos_kcal_g
   end
@@ -86,20 +47,8 @@ class Tag
   def grasa_kcal_g
     (@grasas*9).round(1)
   end
-  def monoins_kcal_g
-    (@grasas_mono_insaturadas*9).round(1)
-  end
-  def poli_kcal_g
-    (@grasas_poliinsaturadas*9).round(1)
-  end
   def hidratos_kcal_g
    (@hidratos*4).round(1)
-  end
-  def polialcoles_kcal_g
-    (@polialcoholes*2.4).round(1)
-  end
-  def almidon_kcal_g
-    (@almidon*4).round(1)
   end
   def fibra_kcal_g
     (@fibra_alim*2).round(1)
@@ -116,49 +65,5 @@ class Tag
   def lipidos_kcal_g
     (@lipidos*7).round(1)
   end
-
-  def imprimir_etiqueta
-     if @dividido == "T"
-        puts "     Por 100g o 100ml de producto   IR(por 100g o 100ml)   Por porcion de #{self.suma_valores/self.porciones}   IR(por porcion de #{self.suma_valores/self.porciones})"
-        puts "Val. ener:#{self.suma_kj} kJ,#{self.suma_kcal} kcal ,#{self.ingesta_referencia(self.suma_kj)} %,#{self.suma_kj/self.porciones}, #{self.ingesta_referencia(self.suma_kj)/self.porciones} Recomendado: 8400 kJ/ 2000kcal"
-        puts "Grasas: #{@grasas} g, #{self.ingesta_referencia(@grasas)} %, #{@grasas/self.porciones} g, #{self.ingesta_referencia(@grasas)/self.porciones} %"
-        puts "Saturadas: #{@grasas_saturadas} g, #{self.ingesta_referencia(@grasas_saturadas)} %, #{@grasas_saturadas/self.porciones} g, #{self.ingesta_referencia(@grasas_saturadas)/self.porciones} %"
-        puts "Monoinsaturadas: #{@grasas_mono_insaturadas} g, 0 %, #{@grasas_mono_insaturadas/self.porciones} g, 0%"
-        puts "Poliinsaturados: #{@grasas_poliinsaturadas} g, 0%, #{@grasas_poliinsaturadas/self.porciones} g, 0%"
-        puts "Hidratos: #{@hidratos} g, #{self.ingesta_referencia(@hidratos)} %, #{@hidratos/self.porciones} g, #{self.ingesta_referencia(@hidratos)/self.porciones} %"
-        puts "Azucares: #{@azucares} g, #{self.ingesta_referencia(@azucares)} %, #{@azucares/self.porciones} g, #{self.ingesta_referencia(@azucares)/self.porciones} %"
-        puts "Polialcoholes: #{@polialcoholes} g, 0%, #{@polialcoholes/self.porciones} g, 0%"
-        puts "Almidon: #{@almidon} g, 0%, #{@almidon/self.porciones} g, 0%"
-        puts "Fibra alim: #{@fibra_alim} g, 0%, #{@fibra_alim/self.porciones} g, 0%"
-        puts "Proteinas: #{@proteinas} g, #{self.ingesta_referencia(@proteinas)} %, #{@proteinas/self.porciones} g, #{self.ingesta_referencia(@proteinas)/self.porciones} %"
-        puts "Sal: #{@sal} g, #{self.ingesta_referencia(@sal)} %, #{@sal/self.porciones} g, #{self.ingesta_referencia(@sal)/self.porciones} %"
-     elsif @dividido == "F"
-	puts "     Por 100g o 100ml de producto   IR(por 100g o 100ml) "
-        puts "Val. ener:#{self.suma_kj} kJ,#{self.suma_kcal} kcal ,#{self.ingesta_referencia(self.suma_kj)} %, Recomendado: 8400 kJ/ 2000kcal"
-        puts "Grasas: #{@grasas} g, #{self.ingesta_referencia(@grasas)} % " 
-        puts "Saturadas: #{@grasas_saturadas} g, #{self.ingesta_referencia(@grasas_saturadas)} %, "
-        puts "Monoinsaturadas: #{@grasas_mono_insaturadas} g, 0% "
-        puts "Poliinsaturados: #{@grasas_poliinsaturadas} g,  0% "
-        puts "Hidratos: #{@hidratos} g, #{self.ingesta_referencia(@hidratos)} %"
-        puts "Azucares: #{@azucares} g, #{self.ingesta_referencia(@azucares)} %"
-        puts "Polialcoholes: #{@polialcoholes} g, 0%"
-        puts "Almidon: #{@almidon} g, 0%"
-        puts "Fibra alim: #{@fibra_alim} g, 0%"
-        puts "Proteinas: #{@proteinas} g, #{self.ingesta_referencia(@proteinas)} %"
-        puts "Sal: #{@sal} g, #{self.ingesta_referencia(@sal)} %"
-
-      end
-  end
-
-  def valores_opt
-    puts "Valor energetico recomendable: 8400 kJ/ 2000 kcal/g vs valor energetico del producto: #{self.suma_kj} kJ, #{self.suma_kcal} kcal"
-    puts "Grasas totales recomendables: 70g vs grasas del producto: #{@grasas} g"
-    puts "Acidos grasos saturados(grasas saturadas) recomendables: 20g vs acidos grasos saturados del producto: #{@grasas_saturadas} g"
-    puts "Hidratos de carbono recomendables:260g vs hidratos de carbono del producto #{@hidratos} g"
-    puts "Azucares recomendables: 90g vs azucares del producto #{@azucares} g"
-    puts "Proteinas recomendables: 50g vs proteinas del producto #{@proteinas} g"
-    puts "Sal recomendable: 6g vs sal del producto #{@sal}"
-  end
-
 end
 

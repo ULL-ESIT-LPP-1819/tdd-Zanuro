@@ -9,10 +9,6 @@ class Datos
     @cintura = cintura
     @cadera = cadera
   end
-  def imc
-    #puts "Indice de masa corporal es: #{Float((a/(b**2))*(10**4)).round(2)}"
-    Float((@peso/(@altura**2))*(10**4)).round(2)
-  end
   def porcentaje_grasa
     if @sexo == "hombre"
       Float(1.2*self.imc+0.23*@edad-10.8*1-5.4).round(2)
